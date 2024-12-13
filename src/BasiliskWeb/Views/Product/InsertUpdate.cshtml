@@ -1,0 +1,85 @@
+@model ProductInsertUpdateViewModel;
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>PRODUCT INDEX / IF(INSERT or UPDATE) PRODUCT</span>
+    </div>
+}
+
+@if (Model != null) {
+    <form method="post" class="upsert-form" action="" enctype="multipart/form-data">
+    <input type="hidden" />
+    <input type="hidden" />
+    <input type="hidden" />
+    <table>
+        <tbody>
+            <tr>
+                <td><label asp-for="Name">Product Name*</label></td>
+                <td>
+                    <input asp-for="Name" type="text" id="name">
+                    <span class="field-validation-error" asp-validation-for="Name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="CategoryId">Category*</label></td>
+                <td>
+                    <select asp-for="CategoryId" id="@Model.CategoryId">
+                        <option value="">No Specific Category</option>
+                        @foreach (var category in Model.Categories) {
+                            <option value="@category.Value">@category.Text
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="field-validation-error"></span>
+                </td>
+            </tr>   
+            <tr>
+                <td><label asp-for="SupplierId">Supplier*</label></td>
+                <td>
+                    <select asp-for="SupplierId" id="@Model.SupplierId">
+                        <option value="">No Specific Supplier</option>
+                        @foreach (var supplier in Model.Suppliers) {
+                            <option value="@supplier.Value">@supplier.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SupplierId" class="field-validation-error"></span>
+                </td>
+            </tr>     
+            <tr>
+                <td><label asp-for="Price">Price*</label></td>
+                <td>
+                    <input asp-for="Price">
+                    <span asp-validation-for="Price" class="field-validation-error"></span>
+                </td>
+            </tr>              
+            <tr>
+                <td><label asp-for="Stock">Stock*</label></td>
+                <td>
+                    <input type="number" min="0" th:field="*{stock}" asp-for="Stock">
+                    <span asp-validation-for="Stock" class="field-validation-error" th:errors="*{stock}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="OnOrder">On Order*</label></td>
+                <td>
+                    <input type="number" min="0" asp-for="OnOrder">
+                    <span asp-validation-for="OnOrder" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Discontinue">Discontinue</label></td>
+                <td>
+                    <input type="checkbox" asp-for="Discontinue">
+                </td>
+            </tr>
+            <tr>
+                <td class="textarea-label"><label asp-for="Description">Product Description</label></td>
+                <td>
+                    <textarea asp-for="Description"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="blue-button" type="submit">if(Insert or Update) Product</button>
+    </form>
+}

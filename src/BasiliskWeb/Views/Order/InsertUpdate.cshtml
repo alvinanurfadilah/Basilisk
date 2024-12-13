@@ -1,0 +1,94 @@
+@model Order.OrderInsertUpdateViewModel;
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span> ORDER INDEX / IF(INSERT or UPDATE) ORDER</span>
+    </div>
+}
+
+@* <form method="post" class="upsert-form" th:attr="action=@{/order/upsert}"  th:object="${dto}"> *@
+@if (Model != null) {
+    <form method="post" class="upsert-form">
+    <input type="hidden" />
+    <input type="hidden" />
+    <table>
+        <tbody>
+            <tr>
+                <td><label asp-for="CustomerId">Customer*</label></td>
+                <td> 
+                    <select asp-for="CustomerId" id="@Model.CustomerId" asp-items="@Model.Customers">
+                    <option value="">No Specific Customer</option>
+                    </select>
+                    <span asp-validation-for="@Model.CustomerId" class="field-validation-error"></span>
+                </td>
+            </tr>   
+            <tr>
+                <td><label asp-for="SalesEmployeeNumber">Salesman*</label></td>
+                <td>
+                    <select asp-for="SalesEmployeeNumber" id="@Model.SalesEmployeeNumber" asp-items="@Model.Salesman">
+                        <option value="">No Specific Salesman</option>
+                    </select>
+                    <span asp-validation-for="SalesEmployeeNumber" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 class="combined-validation">
+                    <div class="field-validation-error"></div>
+                </td> 
+            </tr>     
+            <tr>
+                <td><label asp-for="OrderDate">Order Date*</label></td>
+                <td>
+                    <input type="date" id="orderDate" asp-for="OrderDate">
+                    <span asp-validation-for="OrderDate" class="field-validation-error"></span>
+                </td>
+            </tr>              
+            <tr>
+                <td><label asp-for="ShippedDate">Shipped Date</label></td>
+                <td>
+                    <input type="date" id="shippedDate" asp-for="ShippedDate">
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="DueDate">Due Date</label></td>
+                <td>
+                    <input type="date" id="dueDate" asp-for="DueDate">
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="DeliveryId">Delivery*</label></td>
+                <td>
+                    <select asp-for="DeliveryId" asp-items="@Model.Deliveries">
+                        <option value="">No Specific Delivery</option>
+                    </select>
+                    <span asp-validation-for="DeliveryId" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="textarea-label"><label asp-for="DestinationAddress">Destination Address*</label></td>
+                <td>
+                    <textarea asp-for="DestinationAddress"></textarea>
+                    <span asp-validation-for="DestinationAddress" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="DestinationCity">Destination City*</label></td>
+                <td>
+                    <input asp-for="DestinationCity" id="destinationCity">
+                    <span asp-validation-for="DestinationCity" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="DestinationPostalCode">Destination Postal Code*</label></td>
+                <td>
+                    <input asp-for="DestinationPostalCode" id="destinationPostalCode">
+                    <span asp-validation-for="DestinationPostalCode" class="field-validation-error"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="blue-button" type="submit">if(Insert or Update) Order</button>
+    </form>
+}

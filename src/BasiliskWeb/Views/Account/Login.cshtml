@@ -1,0 +1,36 @@
+@model Account.AccountLoginViewModel;
+@{
+	Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<body class="authentication-body">
+	<div class="authentication-wrapper">
+		<header class="company-logo">
+			<img src="../../image/logo.png" alt="Basilisk" />
+			<h1>
+				Trade of <span class="bold">basilisk</span>
+			</h1>
+		</header>
+		<main>
+			<h1>Sign In</h1>
+			<span>@ViewBag.Message</span>
+			<form method="post" action="">
+				<span asp-validation-for="Username"></span>
+				<input asp-for="Username" id="username" placeholder="username" autocomplete="off" />
+				<span asp-validation-for="Password"></span>
+				<input asp-for="Password" id="password" type="password" placeholder="password" />
+				<span asp-validation-for="Role"></span>
+				<select class="role-user" asp-for=@Model.Role id="@Model.Role" asp-items="@Model.Roles">
+					<option value="">No Specific Role</option>
+				</select>
+
+				<button type="submit" class="login">sign in</button>
+			</form>
+			<div class="link-container">
+				<a asp-action="Register" asp-controller="Account">Click here to register</a>
+			</div>
+		</main>
+	</div>
+</body>
+
+<script src="~/js/account.js" defer></script>

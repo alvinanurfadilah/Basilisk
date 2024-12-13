@@ -1,0 +1,67 @@
+@model Order.OrderDetailIndexViewModel
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>ORDER INDEX / ORDER OF @Model.Order.InvoiceNumber</span>
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="grid-container order-detail">
+        <section class="header-info">
+            <div>Invoice Number: <span>@Model.Order.InvoiceNumber</span></div>
+            <div>Customer Company: <span>@Model.Order.CustomerCompanyName</span></div>
+            <div>Sales Name: <span>@Model.Order.SalesmanName</span></div>
+            <div>Order Date: <span>@Model.Order.OrderDate.ToString("yyyy-MM-dd")</span></div>
+        </section>
+        <a class="blue-button create-button" asp-action="AddOrderDetail"
+            asp-route-invoiceNumber="@Model.Order.InvoiceNumber">Add New Detail</a>
+        @* <a class="blue-button" href="javascript:;">Download Invoice</a> *@
+        <table>
+            <thead>
+                <th>Action</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Total Price</th>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.OrderDetail)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="UpdateOrderDetail" asp-route-invoiceNumber="@Model.Order.InvoiceNumber" asp-route-id="@item.Id" class="blue-button">Edit</a>
+                            <a asp-action="DeleteOrderDetail" asp-route-invoiceNumber="@Model.Order.InvoiceNumber" asp-route-id="@item.Id" class="blue-button">Delete</a>
+                        </td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Price</td>
+                        <td>@item.Qty</td>
+                        <td>@item.Discount</td>
+                        <td>@item.TotalPrice</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        @if (Model != null)
+                        {
+                            <div class="pagination">
+                                <div>page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+                                <span>
+                                    @for (int pageNumber = 1; pageNumber <= Model.Pagination.TotalPages; pageNumber++)
+                                    {
+                                        <a asp-action="OrderDetail" asp-route-invoiceNumber="@Model.Order.InvoiceNumber"
+                                            asp-route-pageNumber="@pageNumber" class="number">@pageNumber</a>
+                                    }
+                                </span>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+}

@@ -1,0 +1,54 @@
+@model Product.ProductIndexViewModel;
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>PRODUCT INDEX</span>
+    </div>
+}
+
+<div class="grid-tiles product-index">
+    <form asp-action="Index" method="get" class="filter">
+        <input asp-for="@Model.Name" placeholder="Product Name...">
+        <select asp-for="@Model.CategoryId" id="@Model.CategoryId">
+            <option value="">No Specific Category</option>
+            @foreach (var category in Model.Categories) {
+                <option value="@category.Value">@category.Text</option>
+            }
+        </select>
+        <select asp-for="@Model.SupplierId" id="@Model.SupplierId">
+            <option value="">No Specific Supplier</option>
+            @foreach (var supplier in Model.Suppliers) {
+                <option value="@supplier.Value">@supplier.Text</option>
+            }
+        </select>
+        <button class="blue-button" type="submit">Search</button>
+    </form>
+    <a class="blue-button create-button" asp-action="Add">Insert New Product</a>
+    <div class="tiles-container">
+        @foreach (var product in Model.Products) {
+            <div class="tile">
+                <div class="name">@product.Name</div>
+                <div class="image-container">
+                    <img src="../../image/product/2c00dac3-b526-418e-a3c3-ab55091546b3.jpg">
+                </div>
+                <div class="button-wrapper">
+                    <a asp-action="Update" asp-route-id="@product.Id" class="blue-button update-button">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="blue-button delete-button">Delete</a>
+                </div>
+                <div class="supplier">@product.CompanyName</div>
+                <div class="category">@product.CategoryName</div>
+                <div class="price">@product.Price.ToString("C2", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID"))</div>
+            </div>
+        }
+    </div>
+    @if (Model != null) {
+        <div class="pagination">
+            <div>page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+            <span>
+                @for (int pageNumber = 1; pageNumber <= Model.Pagination.TotalPages; pageNumber++) {
+                    <a asp-action="Index" asp-route-pageNumber="@pageNumber" asp-route-name="@Model.Name" asp-route-categoryName="@Model.CategoryId" asp-route-companyName="@Model.SupplierId" class="number">@pageNumber</a>
+                }
+            </span>
+        </div>
+    }
+</div>

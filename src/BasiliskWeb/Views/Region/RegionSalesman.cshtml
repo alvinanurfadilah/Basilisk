@@ -1,0 +1,82 @@
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>SALESMAN OF <span class="bread-crumbs-title"></span></span>
+    </div>
+}
+
+<div class="grid-container region-detail">
+        <section class="header-info">
+            <div>City: <span id="city"></span></div>
+            <div>Remark: <span id="remark"></span></div>
+        </section>
+        <form asp-action="RegionSalesman" method="get" class="filter">
+            <input type="hidden" name="id">
+            <input type="text" id="employeeNumberFilter" placeholder="Employee Number...">
+            <input type="text" id="fullNameFilter" placeholder="Full Name..." th:value="${name}">
+            <select name="employeeLevel">
+                <option value="">No Specific Level</option>
+                <option value="Regional_Sales_Director">Regional_Sales_Director</option>
+                <option value="Retail_Sales">Retail_Sales</option>
+                <option value="Inside_Sales_Representative">Inside_Sales_Representative</option>
+                <option value="Wholesale_Sales">Wholesale_Sales</option>
+                <option value="Sales_Engineer">Sales_Engineer</option>
+                <option value="Sales_Assistant">Sales_Assistant</option>
+                <option value="Sales_Manager">Sales_Manager</option>
+                <option value="Outside_Sales_Representative">Outside_Sales_Representative</option>
+            </select>
+            <input type="text" id="superiorNameFilter" placeholder="Superior Name...">
+            <button class="blue-button" type="submit">Search</button>
+        </form>
+        <a class="blue-button create-button" id="myBtn">Assign New Salesman</a>
+
+        <div id="myBtn" class="modal-layer">
+        <div class="popup-dialog">
+            <header class="popup-dialog">
+                <h1>REGION INDEX / SALESMAN OF <span class="bread-crumbs-title"></span> / ASSIGN SALESMAN </h1>
+                <button class=".close-button">X</button>
+            </header>
+
+            <form method="post" class="upsert-form" action="">
+                <input type="hidden" />
+                <input type="hidden" />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>Salesman*</label>
+                            <td>
+                                <select class="salesman-dropdown">
+                                    <option value="">No Specific Salesman</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="blue-button" id="insert" type="submit">Assign Salesman</button>
+            </form>
+        </div>
+    </div>
+        
+    <table>
+        <thead>
+            <th>Action</th>
+            <th>Employee Number</th>
+            <th>Full Name</th>
+            <th>Level</th>
+            <th>Superior</th>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+        <tfoot>
+            <tr>
+                    <td colspan="5">
+                        <div class="pagination">
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+</div>
+
+<script src="~/js/regionSalesman.js" defer></script>

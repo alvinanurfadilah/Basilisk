@@ -1,0 +1,119 @@
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>REGION INDEX</span>
+    </div>
+}
+
+<div class="grid-container region-index">
+    <form asp-action="Index" method="get" class="filter" >
+        <input type="text" placeholder="Region City...">
+        <button class="blue-button" type="submit">Search</button>
+    </form>
+    <a class="blue-button create-button" id="myBtn">Insert New Region</a>
+
+    <div id="myBtn" class="modal-layer">
+        <div class="popup-dialog">
+            <header class="popup-dialog">
+                <h1>REGION INDEX / IF(INSERT or UPDATE) REGION</h1>
+                <button class=".close-button">X</button>
+            </header>
+
+            <form method="post" class="upsert-form" action="">
+                <input type="hidden" />
+                <input type="hidden" />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>Region City*</label>
+                                <label name="regionId" id="regionId" hidden></label>
+                                </td>
+                            <td>
+                                <input type="text" name="city" id="city">
+                                <div class="field-validation-error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="textarea-label"><label>Remark</label></td>
+                            <td>
+                                <textarea name="remark" id="remark"></textarea>
+                                <div class="field-validation-error"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="blue-button" id="insert" type="submit">Insert Region</button>
+                <button class="blue-button" id="update" type="submit">Update Region</button>
+            </form>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <th>Action</th>
+            <th>City</th>
+            <th>Remark</th>
+        </thead>
+        <tbody class="region">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <div class="pagination">
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+@* <div class="modal-layer" id="modalSalesman">
+    <div class="grid-container region-detail">
+        <section class="header-info">
+            <div>City: <span id="city"></span></div>
+            <div>Remark: <span id="remark"></span></div>
+        </section>
+        <form method="get" class="filter" action="">
+            <input type="hidden" name="id">
+            <input type="text" name="employeeNumber" placeholder="Employee Number...">
+            <input type="text" name="name" placeholder="Full Name..." th:value="${name}">
+            <select name="employeeLevel">
+                <option th:value=null>No Specific Level</option>
+                <option value="1">Regional_Sales_Director</option>
+                <option value="2">Retail_Sales</option>
+                <option value="3">Wholesale_Sales</option>
+            </select>
+            <input type="text" name="superiorName" placeholder="Superior Name...">
+            <button class="blue-button" type="submit">Search</button>
+        </form>
+        <a class="blue-button create-button" href="region-detail-form.html">Assign New Salesman</a>
+        <table>
+            <thead>
+                <th>Action</th>
+                <th>Employee Number</th>
+                <th>Full Name</th>
+                <th>Level</th>
+                <th>Superior</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div class="pagination">
+                            <div>page 1 of 1</div>
+                            <div>
+                                <a href="javascript:;" class="number">1</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div> *@
+
+
+<script src="~/js/region.js" defer></script>

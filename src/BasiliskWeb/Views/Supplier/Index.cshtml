@@ -1,0 +1,59 @@
+@model SupplierIndexViewModel;
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>SUPPLIER INDEX</span>
+    </div>
+}
+
+<div class="grid-container supplier-index">
+	<form asp-action="Index" method="get" class="filter">
+		<input asp-for="@Model.CompanyName" placeholder="Company Name..." >
+		<input asp-for="@Model.ContactPerson" placeholder="Contact Name...">
+		<input asp-for="@Model.JobTitle" placeholder="Job Title...">
+		<button class="blue-button" type="submit">Search</button>
+	</form>
+	<a class="blue-button create-button" asp-action="Add">Insert New Supplier</a>
+	<table>
+		<thead>
+			<th>Action</th>
+			<th>Company Name</th>
+			<th>Contact Person</th>
+			<th>job Title</th>
+		</thead>
+		<tbody>
+			@if (Model != null) {
+				@foreach (var supplier in Model.Suppliers) {
+					@if (supplier.DeleteDate == null) {
+						<tr>
+							<td>
+								<a asp-action="Update" asp-route-id="@supplier.Id" 
+								class="blue-button update-button">Edit</a>
+								<a asp-action="Delete" asp-route-id="@supplier.Id" class="blue-button delete-button">Delete</a>
+							</td>
+							<td>@supplier.CompanyName</td>
+							<td>@supplier.ContactPerson</td>
+							<td>@supplier.JobTitle</td>
+						</tr>
+					}
+				}
+			}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4">
+					@if (Model != null) {
+						<div class="pagination">
+							<div>page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+							<span>
+								@for (int pageNumber = 1; pageNumber <= Model.Pagination.TotalPages; pageNumber++) {
+									<a asp-action="Index" asp-route-pageNumber="@pageNumber" asp-route-companyName="@Model.CompanyName" asp-route-contactPerson="@Model.ContactPerson" asp-route-jobTitle="@Model.JobTitle" class="number">@pageNumber</a>
+								}
+							</span>
+						</div>
+					}
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>

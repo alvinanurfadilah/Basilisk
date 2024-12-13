@@ -1,0 +1,43 @@
+[data-role="Finance"] .supplier,
+[data-role="Finance"] .customer,
+[data-role="Finance"] .delivery,
+[data-role="Salesman"] .supplier,
+[data-role="Salesman"] .delivery,
+[data-role="Salesman"] .order {
+    display: none;
+}
+[data-role="Finance"] .category-index .create-button,
+[data-role="Finance"] .category-index .update-button,
+[data-role="Finance"] .category-index .delete-button,
+[data-role="Finance"] .product-index .create-button,
+[data-role="Finance"] .product-index .update-button,
+[data-role="Finance"] .product-index .delete-button,
+[data-role="Finance"] .region-index .create-button,
+[data-role="Finance"] .region-index .update-button,
+[data-role="Finance"] .region-index .delete-button,
+[data-role="Finance"] .region-detail .create-button,
+[data-role="Finance"] .region-detail .delete-button,
+[data-role="Finance"] .salesman-index .create-button,
+[data-role="Finance"] .salesman-index .update-button,
+[data-role="Finance"] .salesman-index .delete-button,
+[data-role="Finance"] .salesman-detail .create-button,
+[data-role="Finance"] .salesman-detail .delete-button,
+[data-role="Salesman"] .category-index .create-button,
+[data-role="Salesman"] .category-index .update-button,
+[data-role="Salesman"] .category-index .delete-button,
+[data-role="Salesman"] .region-index .create-button,
+[data-role="Salesman"] .region-index .update-button,
+[data-role="Salesman"] .region-index .delete-button,
+[data-role="Salesman"] .region-detail .create-button,
+[data-role="Salesman"] .region-detail .delete-button,
+[data-role="Salesman"] .salesman-index .create-button,
+[data-role="Salesman"] .salesman-index .update-button,
+[data-role="Salesman"] .salesman-index .delete-button,
+[data-role="Salesman"] .salesman-detail .create-button,
+[data-role="Salesman"] .salesman-detail .delete-button
+{
+    cursor: not-allowed;
+    background: #636e72;
+    color: black;
+    opacity: 0.4;
+}

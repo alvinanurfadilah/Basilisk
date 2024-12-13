@@ -1,0 +1,21 @@
+@using System.Security.Claims
+@{
+    string? username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
+    string? role = User.FindFirst(ClaimTypes.Role)?.Value ?? string.Empty;
+}
+
+<div class="user-wrapper">
+    <div class="user">
+        <a asp-controller="Account" asp-action="ChangePassword" class="full-name">@username</a>
+        <span class="role">@role</span>
+    </div>
+    <div class="sign-out">
+        <a asp-controller="Account" asp-action="Logout" class="logout-button">
+            <button type="submit">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </a>
+    </div>
+</div>
+
+<script src="~/js/logout.js" defer></script>

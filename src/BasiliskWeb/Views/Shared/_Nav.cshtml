@@ -1,0 +1,54 @@
+@using System.Security.Claims
+@{
+    string? role = User.FindFirst(ClaimTypes.Role)?.Value ?? string.Empty;
+}
+
+<div class="company-logo">
+    <img src="../../image/logo.png" alt="Basilisk" />
+    <h1>
+        Trade of <span class="bold">basilisk</span>
+    </h1>
+</div>
+<a asp-controller="Dashboard" asp-action="Index">
+    <i class="fas fa-chart-pie"></i>
+    <span>Dashboard</span>
+</a>
+@if (role == "Admin")
+{
+    <a asp-controller="Category" asp-action="Index">
+        <i class="fas fa-th"></i>
+        <span>Category</span>
+    </a>
+    <a asp-controller="Supplier" asp-action="Index">
+        <i class="fab fa-amazon"></i>
+        <span>Supplier</span>
+    </a>
+    <a asp-controller="Region" asp-action="Index">
+        <i class="fas fa-map-marked-alt"></i>
+        <span>Region</span>
+    </a>
+    <a class="menu delivery" asp-controller="Delivery" asp-action="Index">
+        <i class="fas fa-truck-moving"></i>
+        <span>Delivery</span>
+    </a>
+    <a class="menu salesman" asp-controller="Salesman" asp-action="Index">
+        <i class="fas fa-user-tie"></i>
+        <span>Salesman</span>
+    </a>
+}
+
+@if (role == "Seller")
+{
+    <a asp-controller="Product" asp-action="Index">
+        <i class="fas fa-box-open"></i>
+        <span>Product</span>
+    </a>
+    <a class="menu customer" asp-controller="Customer" asp-action="Index">
+        <i class="fas fa-users"></i>
+        <span>Customer</span>
+    </a>
+    <a class="menu order" asp-controller="Order" asp-action="Index">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <span>Order</span>
+    </a>
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/ico" href="../../favicon.ico"/>
+    <link rel="stylesheet" href="~/css/normalize.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/css/authorization.css" />
+	<link rel="stylesheet" href="~/css/responsive.css" />
+    <script src="~/js/jquery-3.6.0.js"></script>
+	<script src="~/js/apexcharts.js"></script>
+	<script src="~/js/site.js" defer></script>
+
+</head>
+<body>
+    <div class="main-body">
+        <header>
+            @RenderSection("Breadcrumbs", true)
+            <partial name="_Header"></partial>
+        </header>
+        <nav>
+            <partial name="_Nav"></partial>
+        </nav>
+        <main>
+            @RenderBody()
+        </main>
+        <footer>
+            <partial name="_Footer"></partial>
+        </footer>
+    </div>
+</body>
+</html>

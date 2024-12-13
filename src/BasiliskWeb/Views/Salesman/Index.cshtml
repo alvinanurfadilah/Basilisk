@@ -1,0 +1,162 @@
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>SALESMAN INDEX</span>
+    </div>
+}
+
+<div class="grid-container salesman-index">
+    <form asp-action="Index" method="get" class="filter">
+        <input type="text" class="inputEmployeeNumber" placeholder="Employee Number...">
+        <input type="text" class="inputFullName" placeholder="Full Name...">
+        <select class="inputLevel">
+            <option value="">No Specific Level</option>
+            <option value="Regional_Sales_Director">Regional_Sales_Director</option>
+            <option value="Retail_Sales">Retail_Sales</option>
+            <option value="Inside_Sales_Representative">Inside_Sales_Representative</option>
+            <option value="Wholesale_Sales">Wholesale_Sales</option>
+            <option value="Sales_Engineer">Sales_Engineer</option>
+            <option value="Sales_Assistant">Sales_Assistant</option>
+            <option value="Sales_Manager">Sales_Manager</option>
+            <option value="Outside_Sales_Representative">Outside_Sales_Representative</option>
+        </select>
+        <input type="text" class="inputSuperiorName" placeholder="Superior Name...">
+        <button class="blue-button" type="submit">Search</button>
+    </form>
+    <a class="blue-button create-button" id="myBtn">Insert New Salesman</a>
+
+    <div id="myBtn" class="modal-layer">
+        <div class="popup-dialog">
+            <header class="popup-dialog">
+                <h1>SALESMAN INDEX / IF(INSERT or UPDATE) SALESMAN</h1>
+                <button class=".close-button">X</button>
+            </header>
+
+            <form method="post" class="upsert-form" action="">
+                <div id="salesman-modal">
+                    <div class="salesman-modal-1">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label>Employee Number*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="employeeNumber">
+                                        <div class="field-validation-error"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>First Name*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="firstName">
+                                        <div class="field-validation-error"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Last Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="lastName">
+                                        <div class="field-validation-error"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Employee Level*</label>
+                                    </td>
+                                    <td>
+                                        <select id="level">
+                                            <option value="">No Specific Level</option>
+                                            <option value="Regional_Sales_Director">Regional_Sales_Director</option>
+                                            <option value="Retail_Sales">Retail_Sales</option>
+                                            <option value="Inside_Sales_Representative">Inside_Sales_Representative</option>
+                                            <option value="Wholesale_Sales">Wholesale_Sales</option>
+                                            <option value="Sales_Engineer">Sales_Engineer</option>
+                                            <option value="Sales_Assistant">Sales_Assistant</option>
+                                            <option value="Sales_Manager">Sales_Manager</option>
+                                            <option value="Outside_Sales_Representative">Outside_Sales_Representative</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Birth Date (month/date/year)*</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="birthDate">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="salesman-modal-2">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label>Hired Date (month/date/year)*</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" id="hiredDate">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Superior</label>
+                                    </td>
+                                    <td>
+                                        <select id="superior-dropdown">
+                                            <option value="">Select Superior</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>City</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="city">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="textarea-label"><label>Address</label></td>
+                                    <td>
+                                        <textarea id="address"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button class="blue-button" id="insert" type="submit">Insert Salesman</button>
+                <button class="blue-button" id="update" type="submit">Update Salesman</button>
+            </form>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <th>Action</th>
+            <th>Employee Number</th>
+            <th>Full Name</th>
+            <th>Level</th>
+            <th>Superior</th>
+        </thead>
+        <tbody id="salesman">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <div class="pagination">
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script src="~/js/salesman.js" defer></script>

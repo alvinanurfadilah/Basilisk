@@ -1,0 +1,50 @@
+@model Category.CategoryIndexViewModel;
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>CATEGORY INDEX</span>
+    </div>
+}
+
+<div class="grid-container category-index">
+    <form asp-action="Index" method="get" class="filter">
+        <input asp-for="@Model.Name" placeholder="Category Name...">
+        <button class="blue-button" type="submit">Search</button>
+    </form>
+    <a class="blue-button create-button" asp-action="Add">Insert New Category</a>
+    <table>
+        <thead>
+            <th>Action</th>
+            <th>Name</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories) {
+                <tr>
+                    <td>
+                        <a asp-action="Update" asp-route-id="@category.Id" class="blue-button update-button">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@category.Id" class="blue-button delete-button">Delete</a>
+                    </td>
+                    <td>@category.Name</td>
+                    <td>@category.Description</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    @if (Model != null) {
+                        <div class="pagination">
+                            <div>page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+                            <span>
+                                @for (int pageNumber = 1; pageNumber <= Model.Pagination.TotalPages; pageNumber++) {
+                                    <a asp-action="Index" asp-route-pageNumber="@pageNumber" asp-route-name="@Model.Name" class="number">@pageNumber</a>
+                                }
+                            </span>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

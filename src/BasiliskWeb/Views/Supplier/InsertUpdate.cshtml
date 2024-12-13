@@ -1,0 +1,66 @@
+@model SupplierInsertUpdateViewModel;
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+		<a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+		<span>SUPPLIER INDEX / IF(INSERT or UPDATE) SUPPLIER</span>
+	</div>
+}
+
+<form method="post" class="upsert-form">
+	<input type="hidden" />
+	<input type="hidden" />
+	<table>
+		<tbody>
+			<tr>
+				<td><label asp-for="CompanyName">Company Name*</label></td>
+				<td>
+					<input asp-for="CompanyName">
+					<span class="field-validation-error" asp-validation-for="@Model.CompanyName"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><label asp-for="ContactPerson">Contact Person*</label></td>
+				<td>
+					<input asp-for="ContactPerson">
+					<span class="field-validation-error" asp-validation-for="ContactPerson"></span>
+				</td>
+			</tr>  
+			<tr>
+				<td><label asp-for="JobTitle">Job Title*</label></td>
+				<td>
+					<input asp-for="JobTitle">
+					<span class="field-validation-error" asp-validation-for="JobTitle"></span>
+				</td>
+			</tr>    
+			<tr>
+				<td class="textarea-label"><label asp-for="Address">Address</label></td>
+				<td>
+					<textarea asp-for="Address"></textarea>
+					<div class="field-validation-error"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><label asp-for="City">City</label></td>
+				<td>
+					<input asp-for="City">
+					<div class="field-validation-error"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><label asp-for="Phone">Phone</label></td>
+				<td>
+					<input type="tel" asp-for="Phone">
+					<div class="field-validation-error"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><label asp-for="Email">Email</label></td>
+				<td>
+					<input type="email" asp-for="Email">
+					<div class="field-validation-error"></div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="blue-button" type="submit">if(Insert or Update) Supplier</button>
+</form>

@@ -1,0 +1,31 @@
+@model Category.CategoryInsertUpdateViewModel;
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>CATEGORY INDEX / IF(INSERT or UPDATE) CATEGORY</span>
+    </div>
+}
+
+<form method="post" class="upsert-form">
+    <input type="hidden" />
+    <input type="hidden" />
+    <table>
+        <tbody>
+            <tr>
+                <td><label asp-for="Name">Category Name*</label></td>
+                <td>
+                    <input asp-for="Name">
+                    <span class="field-validation-error" asp-validation-for="Name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="textarea-label"><label asp-for="Description">Category Description</label></td>
+                <td>
+                    <textarea asp-for="Description"></textarea>
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="blue-button" type="submit">if(Insert or Update) Category</button>
+</form>

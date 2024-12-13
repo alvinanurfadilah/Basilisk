@@ -1,0 +1,59 @@
+@model Customer.CustomerInsertUpdateViewModel;
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>CUSTOMER INDEX / IF(INSERT or UPDATE) CUSTOMER</span>
+    </div>
+}
+
+<form method="post" class="upsert-form" th:object="${dto}">
+    <input type="hidden"/>
+    <input type="hidden"/>
+    <table>
+        <tbody>
+            <tr>
+                <td><label asp-for="CompanyName">Company Name*</label></td>
+                <td>
+                    <input asp-for="CompanyName" id="companyName">
+                    <span class="field-validation-error" asp-validation-for="CompanyName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="ContactPerson">Contact's Full Name*</label></td>
+                <td>
+                    <input asp-for="ContactPerson" id="contactPerson">
+                    <span class="field-validation-error" asp-validation-for="ContactPerson"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="textarea-label"><label asp-for="Address">Company's Address</label></td>
+                <td>		                    
+                    <textarea id="address" asp-for="Address"></textarea>
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="City">Company's City</label></td>
+                <td>
+                    <input asp-for="City" id="city">
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Phone">Company's Phone</label></td>
+                <td>
+                    <input type="tel" th:field="phone" asp-for="Phone">
+                    <div class="field-validation-error"></div> 
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Email">Contact Person's Email</label></td>
+                <td>
+                    <input type="email" id="email" asp-for="Email">
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="blue-button" type="submit">if(Insert or update) Customer</button>
+</form>

@@ -1,0 +1,38 @@
+@model Order.OrderDetailInsertUpdateViewModel;
+@section Breadcrumbs {
+	<div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span> ORDER OF INDEX / IF(INSERT or UPDATE) DETAIL</span>
+    </div>
+}
+
+<form method="post" class="upsert-form">
+    <table>
+        <tbody>
+            <tr>
+                <td><label asp-for="ProductId">Product*</label></td>
+                <td>
+                    <select asp-for="ProductId" id="@Model.Id" asp-items="@Model.Products">
+                        <option value="">No Specific Product</option>
+                    </select>
+                    <span asp-validation-for="ProductId" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Quantity">Quantity*</label></td>
+                <td>
+                    <input type="number" min="0" id="quantity" asp-for="Quantity">
+                    <span asp-validation-for="Quantity" class="field-validation-error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Discount">Discount(%)*</label></td>
+                <td>
+                    <input type="text" class="moneyConversion" id="discount" asp-for="Discount">
+                    <span asp-validation-for="Discount" class="field-validation-error"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="blue-button" type="submit">if(Insert or Update) Order Detail</button>
+</form>

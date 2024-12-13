@@ -1,0 +1,85 @@
+@model Order.OrderIndexViewModel;
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>ORDER INDEX</span>
+    </div>
+}
+
+<div class="grid-container order-index">
+    <form asp-action="Index" method="get" class="filter">
+        <input asp-for="@Model.InvoiceNumber" placeholder="Invoice Number...">
+        <select asp-for="CustomerId" id="@Model.CustomerId">
+            <option value="">No Specific Customer</option>
+            @foreach (var customer in Model.Customers)
+            {
+                <option value="@customer.Value">@customer.Text</option>
+            }
+        </select>
+        <select asp-for="SalesEmployeeNumber" id="@Model.SalesEmployeeNumber">
+            <option value="">No Specific Salesman</option>
+            @foreach (var salesman in Model.Salesman)
+            {
+                <option value="@salesman.Value">@salesman.Text</option>
+            }
+        </select>
+        <select asp-for="DeliveryId" id="@Model.DeliveryId" asp-items="@Model.Deliveries">
+            <option value="">No Specific Delivery</option>
+        </select>
+        <input type="date" asp-for="OrderDate" id="orderDate">
+        <button class="blue-button" type="submit">Search</button>
+    </form>
+    <a class="blue-button create-button" asp-action="Add">Insert New Order</a>
+    <table>
+        <thead>
+            <th>Action</th>
+            <th>Invoice Number</th>
+            <th>Customer</th>
+            <th>Salesman</th>
+            <th>Order Date</th>
+            <th>Delivery</th>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Update" asp-route-invoiceNumber="@order.InvoiceNumber"
+                            class="blue-button update-button">Edit</a>
+                        <a asp-action="Delete" asp-route-invoiceNumber="@order.InvoiceNumber"
+                            class="blue-button delete-button">Delete</a>
+                        <a asp-action="OrderDetail" asp-route-invoiceNumber="@order.InvoiceNumber"
+                            class="blue-button detail-button">Invoice</a>
+                    </td>
+                    <td>@order.InvoiceNumber</td>
+                    <td>@order.CustomerCompanyName</td>
+                    <td>@order.SalesmanName</td>
+                    <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                    <td>@order.CompanyName</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    @if (Model != null)
+                    {
+                        <div class="pagination">
+                            <div>page @Model.Pagination.PageNumber of @Model.Pagination.TotalPages</div>
+                            <span>
+                                @for (int pageNumber = 1; pageNumber <= Model.Pagination.TotalPages; pageNumber++)
+                                {
+                                    <a asp-action="Index" asp-route-pageNumber="@pageNumber"
+                                        asp-route-customerId="@Model.CustomerId"
+                                        asp-route-salesEmployeeNumber="@Model.SalesEmployeeNumber"
+                                        asp-route-deliveryId="@Model.DeliveryId" asp-route-orderDate="@Model.OrderDate"
+                                        class="number">@pageNumber</a>
+                                }
+                            </span>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

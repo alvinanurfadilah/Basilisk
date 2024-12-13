@@ -1,0 +1,64 @@
+@section Breadcrumbs {
+    <div class="bread-crumbs">
+        <a class="toggle-menu" href="javascript:;"><i class="fas fa-bars"></i></a>
+        <span>SALESMAN INDEX / REGION OF <span class="bread-crumbs-fullName"></span></span>
+    </div>
+}
+
+<div class="grid-container region-detail">
+    <section class="header-info">
+        <div>Employee Number: <span id="employeeNumber"></span></div>
+        <div>Full Name: <span id="fullName"></span></div>
+    </section>
+    <form asp-action="RegionSalesman" method="get" class="filter">
+        <input type="text" id="city" placeholder="Region Name...">
+        <button class="blue-button" type="submit">Search</button>
+    </form>
+    <a class="blue-button create-button" id="myBtn">Assign New Region</a>
+
+    <div id="myBtn" class="modal-layer">
+        <div class="popup-dialog">
+            <header class="popup-dialog">
+                <h1>REGION INDEX / SALESMAN OF <span class="bread-crumbs-title"></span> / ASSIGN SALESMAN </h1>
+                <button class=".close-button">X</button>
+            </header>
+
+            <form method="post" class="upsert-form" action="">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>Region*</label>
+                            <td>
+                                <select class="region-dropdown">
+                                    <option value="">No Specific Region</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="blue-button" id="insert" type="submit">Assign Region</button>
+            </form>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <th>Action</th>
+            <th>City</th>
+            <th>Remark</th>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <div class="pagination">
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script src="~/js/salesmanRegion.js" defer></script>
